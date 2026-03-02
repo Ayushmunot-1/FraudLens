@@ -1,0 +1,31 @@
+invoice_id,vendor,invoice_date,quantity,unit_price,amount,department,approved_by
+INV-001,Acme Supplies,2024-01-05,10,500.00,5000.00,IT,John Smith
+INV-002,Global Tech,2024-01-06,5,1200.00,6000.00,Finance,Sarah Lee
+INV-003,Acme Supplies,2024-01-07,2,500.00,1000.00,IT,John Smith
+INV-004,FastParts Co,2024-01-08,100,45.00,4500.00,Operations,Mike Chen
+INV-005,Global Tech,2024-01-09,3,1200.00,3600.00,Finance,Sarah Lee
+INV-006,Acme Supplies,2024-01-10,8,500.00,4000.00,IT,John Smith
+INV-007,FastParts Co,2024-01-11,50,45.00,2250.00,Operations,Mike Chen
+INV-002,Global Tech,2024-01-12,5,1200.00,6000.00,Finance,Sarah Lee
+INV-009,Acme Supplies,2024-01-13,4,500.00,2000.00,IT,John Smith
+INV-010,QuickServ Ltd,2024-01-14,1,50000.00,50000.00,Finance,Sarah Lee
+INV-011,FastParts Co,2024-01-15,20,45.00,2000.00,Operations,Mike Chen
+INV-012,Global Tech,2024-01-16,6,1200.00,7200.00,Finance,Sarah Lee
+INV-013,Acme Supplies,2024-01-17,12,500.00,6000.00,IT,John Smith
+INV-014,QuickServ Ltd,2024-01-18,1,500000.00,500000.00,Finance,Sarah Lee
+INV-015,FastParts Co,2024-01-19,30,45.00,1350.00,Operations,Mike Chen
+INV-016,OfficeMax,2024-01-20,15,80.00,1200.00,Admin,Jane Doe
+INV-017,OfficeMax,2024-01-21,10,80.00,900.00,Admin,Jane Doe
+INV-018,Acme Supplies,2024-01-22,6,500.00,3000.00,IT,John Smith
+INV-019,Global Tech,2024-01-23,4,1200.00,5200.00,Finance,Sarah Lee
+INV-020,FastParts Co,2024-01-24,75,45.00,3375.00,Operations,Mike Chen
+INV-021,OfficeMax,2024-01-25,20,80.00,1600.00,Admin,Jane Doe
+INV-022,QuickServ Ltd,2024-01-26,2,200.00,500.00,Maintenance,Tom Brown
+INV-023,Acme Supplies,2024-01-27,5,500.00,2500.00,IT,John Smith
+INV-024,Global Tech,2024-01-28,7,1200.00,8400.00,Finance,Sarah Lee
+INV-025,Shadow Vendor,2024-01-29,1,100000.00,100000.00,Unknown,
+INV-026,FastParts Co,2024-01-13,50,45.00,2250.00,Operations,Mike Chen
+INV-027,Acme Supplies,2024-01-20,8,500.00,4000.00,IT,John Smith
+INV-028,BigCorp Services,2024-01-27,1,75000.00,75000.00,Finance,
+INV-029,Global Tech,2024-02-03,5,1200.00,6000.00,Finance,Sarah Lee
+INV-030,NewStart LLC,2024-01-15,1,95000.00,95000.00,Finance,Sarah Lee

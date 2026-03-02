@@ -1,0 +1,80 @@
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+pip-wheel-metadata/
+
+# ─── Virtual Environment ──────────────────────────────────────────────────────
+venv/
+env/
+.env/
+.venv/
+ENV/
+
+# ─── Environment Variables (NEVER commit secrets) ─────────────────────────────
+.env
+*.env
+!.env.example
+
+# ─── Uploaded Files ───────────────────────────────────────────────────────────
+backend/uploads/
+backend/watched_folder/
+*.pdf
+*.xlsx
+*.xls
+!sample_data/*.pdf
+!sample_data/*.xlsx
+
+# ─── Database ─────────────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── OS Files ─────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# ─── IDE & Editor ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# ─── Testing ──────────────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ─── Landing Page (not part of the app) ───────────────────────────────────────
+fraudlens-landing.html
+
+# ─── Scheduler files (feature removed) ───────────────────────────────────────
+backend/app/api/scheduler.py
+backend/app/services/scheduler.py
+
+# ─── Misc ─────────────────────────────────────────────────────────────────────
+*.bak
+*.tmp
+*.temp
+{backend/
+{backend/{app/

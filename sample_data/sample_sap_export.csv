@@ -1,0 +1,13 @@
+Belegnummer,Lieferant,Buchungsdatum,Menge,Einzelpreis,Betrag,Kostenstelle,Genehmigt_von
+SAP-2024-001,Acme GmbH,2024-01-05,10,500.00,5000.00,IT,Hans Mueller
+SAP-2024-002,TechCorp AG,2024-01-06,5,1200.00,6000.00,Finance,Sarah Weber
+SAP-2024-003,Acme GmbH,2024-01-07,2,500.00,1000.00,IT,Hans Mueller
+SAP-2024-004,FastParts GmbH,2024-01-08,100,45.00,4500.00,Operations,Mike Schmidt
+SAP-2024-005,Acme GmbH,2024-01-13,4,500.00,2000.00,IT,Hans Mueller
+SAP-2024-001,TechCorp AG,2024-01-12,5,1200.00,6000.00,Finance,Sarah Weber
+SAP-2024-007,NeuLieferant GmbH,2024-01-15,1,80000.00,80000.00,Unknown,
+SAP-2024-008,FastParts GmbH,2024-02-03,50,45.00,2250.00,Operations,Mike Schmidt
+SAP-2024-009,TechCorp AG,2024-01-20,6,1200.00,7200.00,Finance,Sarah Weber
+SAP-2024-010,Acme GmbH,2024-01-21,8,500.00,4000.00,IT,Hans Mueller
+SAP-2024-011,FastParts GmbH,2024-01-19,30,45.00,1350.00,Operations,Mike Schmidt
+SAP-2024-012,TechCorp AG,2024-01-27,7,1200.00,9800.00,Finance,Sarah Weber

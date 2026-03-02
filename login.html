@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FraudLens — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface2: #1a2235;
+  --border: #1e2d45;
+  --accent: #00d4ff;
+  --danger: #ff3b5c;
+  --text: #e8edf5;
+  --muted: #5a6a85;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Left panel */
+.left {
+  background: linear-gradient(135deg, #0d1424 0%, #0a0e1a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+}
+
+.left::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+}
+
+.left::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%);
+}
+
+/* Grid lines decoration */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+.logo span { color: var(--accent); }
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-text h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+
+.hero-text h1 span { color: var(--accent); }
+
+.hero-text p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 360px;
+  margin-bottom: 48px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.feature-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Role badges */
+.role-badges {
+  display: flex;
+  gap: 10px;
+  margin-top: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.role-badge {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.badge-admin { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); }
+.badge-auditor { background: rgba(255,184,0,0.1); color: #ffb800; border: 1px solid rgba(255,184,0,0.2); }
+.badge-manager { background: rgba(0,230,118,0.1); color: #00e676; border: 1px solid rgba(0,230,118,0.2); }
+
+/* Right panel */
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 80px;
+  background: var(--bg);
+}
+
+.form-container {
+  width: 100%;
+  max-width: 380px;
+}
+
+.form-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.form-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+}
+
+.tab {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 7px;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.tab.active {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 7px;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  padding: 12px 16px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.08);
+}
+
+.form-group input::placeholder { color: var(--muted); }
+
+.form-group select option { background: var(--surface); }
+
+.submit-btn {
+  width: 100%;
+  background: var(--accent);
+  color: #000;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.submit-btn:hover {
+  background: #00b8d9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0,212,255,0.25);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-msg {
+  background: rgba(255,59,92,0.08);
+  border: 1px solid rgba(255,59,92,0.2);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 13px;
+  color: var(--danger);
+  margin-bottom: 16px;
+  display: none;
+}
+
+.error-msg.show { display: block; }
+
+.divider {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 20px 0;
+  position: relative;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 42%;
+  height: 1px;
+  background: var(--border);
+}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+/* Role info tooltip */
+.role-info {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.6;
+  display: none;
+}
+.role-info.show { display: block; }
+
+/* Loading spinner inline */
+.spinner-inline {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 2px solid rgba(0,0,0,0.3);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<!-- Left Panel -->
+<div class="left">
+  <div class="grid-bg"></div>
+  <div class="logo">Fraud<span>Lens</span></div>
+  <div class="hero-text">
+    <h1>Detect fraud.<br><span>Protect</span> your<br>finances.</h1>
+    <p>AI-powered invoice anomaly detection for finance teams, auditors, and enterprises.</p>
+    <div class="feature-list">
+      <div class="feature-item"><div class="feature-dot"></div>10 detection rules including ML outlier detection</div>
+      <div class="feature-item"><div class="feature-dot"></div>Supports CSV, Excel, SAP exports and PDF</div>
+      <div class="feature-item"><div class="feature-dot"></div>Instant email alerts on high severity findings</div>
+      <div class="feature-item"><div class="feature-dot"></div>Full audit history with role-based access</div>
+    </div>
+    <div class="role-badges">
+      <div class="role-badge badge-admin">Admin</div>
+      <div class="role-badge badge-auditor">Auditor</div>
+      <div class="role-badge badge-manager">Manager</div>
+    </div>
+  </div>
+</div>
+
+<!-- Right Panel -->
+<div class="right">
+  <div class="form-container">
+    <div class="form-title" id="form-title">Welcome back</div>
+    <div class="form-subtitle" id="form-subtitle">Sign in to your FraudLens account</div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Sign In</button>
+      <button class="tab" onclick="switchTab('register')">Create Account</button>
+    </div>
+
+    <!-- Error message -->
+    <div class="error-msg" id="error-msg"></div>
+
+    <!-- LOGIN FORM -->
+    <div id="login-form">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="you@company.com" onkeydown="if(event.key==='Enter') doLogin()">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="Your password" onkeydown="if(event.key==='Enter') doLogin()">
+      </div>
+      <button class="submit-btn" id="login-btn" onclick="doLogin()">Sign In →</button>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="register-form" style="display:none">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="reg-name" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="you@company.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="reg-password" placeholder="Min 6 characters">
+      </div>
+      <div class="form-group">
+        <label>Organisation Name</label>
+        <input type="text" id="reg-org" placeholder="Your company or institution">
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <select id="reg-role" onchange="showRoleInfo()">
+          <option value="auditor">Auditor — Can upload and review anomalies</option>
+          <option value="manager">Manager — Read-only dashboard access</option>
+          <option value="admin">Admin — Full access + manage users</option>
+        </select>
+        <div class="role-info" id="role-info"></div>
+      </div>
+      <button class="submit-btn" id="register-btn" onclick="doRegister()">Create Account →</button>
+      <div class="divider">First account is automatically Admin</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const API = 'http://127.0.0.1:8000';
+
+const roleDescriptions = {
+  admin: '🔑 Full access: upload files, view all anomalies, submit feedback, and manage team members and their roles.',
+  auditor: '🔍 Can upload invoice files, view anomalies, and submit feedback (real / false positive).',
+  manager: '👁 Read-only access: view dashboard KPIs, charts, and anomaly reports. Cannot upload or give feedback.'
+};
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
+  document.getElementById('form-title').textContent = tab === 'login' ? 'Welcome back' : 'Create account';
+  document.getElementById('form-subtitle').textContent = tab === 'login'
+    ? 'Sign in to your FraudLens account'
+    : 'Set up your FraudLens account';
+  hideError();
+}
+
+function showRoleInfo() {
+  const role = document.getElementById('reg-role').value;
+  const info = document.getElementById('role-info');
+  info.textContent = roleDescriptions[role];
+  info.classList.add('show');
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+function hideError() {
+  document.getElementById('error-msg').classList.remove('show');
+}
+
+function setLoading(btnId, loading) {
+  const btn = document.getElementById(btnId);
+  if (loading) {
+    btn.innerHTML = '<span class="spinner-inline"></span>Please wait...';
+    btn.disabled = true;
+  } else {
+    btn.innerHTML = btnId === 'login-btn' ? 'Sign In →' : 'Create Account →';
+    btn.disabled = false;
+  }
+}
+
+async function doLogin() {
+  hideError();
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  if (!email || !password) { showError('Please enter your email and password.'); return; }
+
+  setLoading('login-btn', true);
+  try {
+    const res = await fetch(API + '/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (!res.ok) { showError(data.detail || 'Login failed'); return; }
+
+    // Store token and user info
+    localStorage.setItem('fl_token', data.token);
+    localStorage.setItem('fl_user', JSON.stringify(data.user));
+
+    // Small delay to ensure storage is written before redirect
+    setTimeout(() => { window.location.href = 'http://localhost:3000/dashboard.html'; }, 100);
+  } catch(e) {
+    showError('Could not connect to server. Make sure uvicorn is running.');
+  } finally {
+    setLoading('login-btn', false);
+  }
+}
+
+async function doRegister() {
+  hideError();
+  const name = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const password = document.getElementById('reg-password').value;
+  const org = document.getElementById('reg-org').value.trim() || 'Default Organisation';
+  const role = document.getElementById('reg-role').value;
+
+  if (!name || !email || !password) { showError('Please fill in all required fields.'); return; }
+  if (password.length < 6) { showError('Password must be at least 6 characters.'); return; }
+
+  setLoading('register-btn', true);
+  try {
+    const res = await fetch(API + '/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, password, role, org_name: org })
+    });
+    const data = await res.json();
+    if (!res.ok) { showError(data.detail || 'Registration failed'); return; }
+
+    localStorage.setItem('fl_token', data.token);
+    localStorage.setItem('fl_user', JSON.stringify(data.user));
+    setTimeout(() => { window.location.href = 'http://localhost:3000/dashboard.html'; }, 100);
+  } catch(e) {
+    showError('Could not connect to server. Make sure uvicorn is running.');
+  } finally {
+    setLoading('register-btn', false);
+  }
+}
+
+// Check if token is still valid before auto-redirecting
+async function checkExistingSession() {
+  const token = localStorage.getItem('fl_token');
+  if (!token) return;
+  try {
+    const res = await fetch('http://127.0.0.1:8000/api/auth/me', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (res.ok) {
+      window.location.href = 'http://localhost:3000/dashboard.html';
+    } else {
+      // Token expired or invalid — clear it
+      localStorage.removeItem('fl_token');
+      localStorage.removeItem('fl_user');
+    }
+  } catch(e) {
+    // Server not reachable — stay on login page
+  }
+}
+checkExistingSession();
+</script>
+</body>
+</html>
